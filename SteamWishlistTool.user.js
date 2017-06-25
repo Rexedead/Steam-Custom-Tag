@@ -2,7 +2,7 @@
 // @author Rexedead, Hate
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 0.90
+// @version 0.95
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -118,8 +118,13 @@ function Greasemonkey_main() {
                     addTag(wlItemsByCat[0]);
                     var category = child.getElementsByClassName(wlItemsByCat[0]);
                     for (var item = 1; item < wlItemsByCat.length; item++) {
+                        try {
                         var game = document.getElementById(wlItemsByCat[item]);
                         category[0].appendChild(game);
+                        }
+                        catch (npe){
+                            console.log("list modified");
+                        }
                     }
                 }
                 //console.log(wlItemsByCat[0]);
