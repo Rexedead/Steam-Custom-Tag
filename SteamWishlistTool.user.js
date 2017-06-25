@@ -10,6 +10,8 @@
 // @grant       GM_deleteValue
 // @include *steamcommunity.com/id/*/wishlist*
 // @include *steamcommunity.com/profiles/*/wishlist*
+// @downloadURL https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.user.js
+// @updateURL   https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.meta.js
 // ==/UserScript==
 
 window.addEventListener("load", Greasemonkey_main, false);
