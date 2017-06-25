@@ -2,7 +2,7 @@
 // @author Rexedead, Hate
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 0.95
+// @version 0.98
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -13,25 +13,16 @@
 // @downloadURL https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.user.js
 // @updateURL   https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.meta.js
 // ==/UserScript==
+(function () {
+    'use strict';
 
-window.addEventListener("load", Greasemonkey_main, false);
+    jQuery(document).ready(Greasemonkey_main);
 
-function Greasemonkey_main() {
-    (function () {
-        'use strict';
+    function Greasemonkey_main() {
 
         // Your code here...
-        //ИТА ЩЕДЕВРЕЛЬНЭ!
-
-
-        selfpage();
-        function selfpage() {
-            var headNick = document.getElementsByClassName('whiteLink')[0].innerHTML;
-            var bodyNick = document.getElementsByClassName('username')[1].innerHTML.trim();
-            if (headNick != bodyNick) {
-                throw new Error("Not your page");
-            }
-        }
+        //ИТА ЩЕДЕВРЕЛЬНЭ! ©Hate
+        //GM_deleteValue("Rexedead");
 
 
         var DivBar = document.createElement('div');
@@ -42,7 +33,15 @@ function Greasemonkey_main() {
         var categoryList = document.createElement('div');
         var donBut = document.createElement('button');
         var donSpan = document.createElement('span');
-        var restoreWishlistSave = GM_getValue('wltools', "");
+        var userid;
+        var bodyNick = document.getElementsByClassName('whiteLink')[0].innerHTML;
+        var headNick = document.getElementsByClassName('username')[1].innerHTML.trim();
+        var rightNick = document.getElementById('account_pulldown').innerHTML;
+        if (headNick == bodyNick) {
+            userid = rightNick;
+        } else userid = bodyNick;
+        console.log(userid);
+
         var observer;
 
         span.appendChild(document.createTextNode("Add new category"));
@@ -58,7 +57,7 @@ function Greasemonkey_main() {
 
         DivBar.style = "margin-bottom: 13px;";
         DivBar.className = "Add_Button_Bar";
-        DivBar.name = "barName";
+        DivBar.id = "barName";
 
         donSpan.appendChild(document.createTextNode("DONATE"));
         donSpan.style = "color: rgb(255, 249, 0);";
@@ -67,12 +66,13 @@ function Greasemonkey_main() {
         donBut.type = "button";
         donBut.appendChild(donSpan);
         donBut.style = "outline: none;";
+        donBut.id = "donate";
         donBut.onclick = donate;
 
         categoryList.className = "categoryList";
         categoryList.classList.add("droptarget");
 
-        //Form Position
+       
         DivBar.appendChild(addTextField);
         DivBar.appendChild(addButton);
         DivBar.appendChild(donBut);
@@ -103,12 +103,24 @@ function Greasemonkey_main() {
 
             //console.log(stringOfSave.valueOf());
 
-            GM_setValue('wltools', stringOfSave);
+            GM_setValue(userid, stringOfSave);
 
         }
 
         function restore() {
-            restoreWishlistSave = GM_getValue('wltools');
+
+            //DEBUG START
+            var arry = [];
+            arry = GM_listValues();
+            var p = arry.length;
+            console.log('##=## GM_listValues ' + p);
+            for (var p = arry.length - 1; p > -1; p--) {
+                console.log('##=## ' + p + '  ' + arry[p] + ' = ' + GM_getValue(arry[p]));
+            }
+            //DEBUG END
+
+
+            var restoreWishlistSave = GM_getValue(userid);
 
             if (restoreWishlistSave.length > 0) {
                 var wlitemsUns = restoreWishlistSave.valueOf().split("^");
@@ -119,10 +131,10 @@ function Greasemonkey_main() {
                     var category = child.getElementsByClassName(wlItemsByCat[0]);
                     for (var item = 1; item < wlItemsByCat.length; item++) {
                         try {
-                        var game = document.getElementById(wlItemsByCat[item]);
-                        category[0].appendChild(game);
+                            var game = document.getElementById(wlItemsByCat[item]);
+                            category[0].appendChild(game);
                         }
-                        catch (npe){
+                        catch (npe) {
                             console.log("list modified");
                         }
                     }
@@ -375,7 +387,7 @@ function Greasemonkey_main() {
                 }
             }
 
-            for (var i = 0; i <= game.length - 1; i++) { //PROBLEM PLACE
+            for (var i = 0; i <= game.length - 1; i++) {
                 if (game[i].classList.contains('inCategory')) {
                     var checkBox = document.createElement('input');
                     var text = document.createElement('button');
@@ -421,10 +433,27 @@ function Greasemonkey_main() {
         }
 
         function donate() {
-            var win = window.open("https://steamcommunity.com/tradeoffer/new/?partner=22861895&token=GtBPPaCq", '_blank');
-            win.focus();
+
+            var help = document.createElement('span');
+            help.className = 'help';
+            help.innerHTML = '<a target="_blank"  href="https://steamcommunity.com/tradeoffer/new/?partner=22861895&token=GtBPPaCq">' +
+                '<img alt="Help us via items" src="/favicon.ico" width="22" height="22">' +
+                '</a>' +
+                '<a target="_blank"  href="https://www.paypal.me/rexedead">' +
+                '<img alt="Help us via cent" src="https://www.paypalobjects.com/en_US/i/icon/pp_favicon_x.ico" width="22" height="22">' +
+                '</a>';
+
+            var donParent = document.getElementById("barName");
+            donParent.appendChild(help);
+            donParent.removeChild(donBut);
+
+                // donParent.insertAdjacentHTML('afterend','<a target="_blank"  href="https://steamcommunity.com/tradeoffer/new/?partner=22861895&token=GtBPPaCq">' +
+                //     '<img alt="Help us via items" src="/favicon.ico" width="20" height="20">' +
+                //     '</a>' +
+                //     '<a target="_blank"  href="https://www.paypal.me/rexedead">' +
+                //     '<img alt="Help us via cent" src="https://www.paypalobjects.com/en_US/i/icon/pp_favicon_x.ico" width="20" height="20">' +
+                //     '</a>');
+
         }
-
-
-    })();
-}
+    }
+})();
