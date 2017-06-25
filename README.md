@@ -1,5 +1,5 @@
 # SteamWishlistTool
-Greasemonkey script for organize your wishlist collection
+Greasemonkey script for organize your wishlist collection.
 There is no words, just screenshots
 
 ![Screenshot of the "new Categories"](http://i.imgur.com/zKJWfno.png)
