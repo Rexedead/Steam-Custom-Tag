@@ -2,6 +2,7 @@
 Greasemonkey script for organize your wishlist collection
 
 ![Screenshot of the "new Categories"](http://i.imgur.com/zKJWfno.png)
+![Screenshot of the "spoilers"](http://i.imgur.com/DkGn2hW.png)
 
 ## Installation
 1. Install [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) (Chrome)
