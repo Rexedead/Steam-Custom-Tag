@@ -2,7 +2,7 @@
 // @author Rexedead, Hate
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 0.90
+// @version 0.95
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
