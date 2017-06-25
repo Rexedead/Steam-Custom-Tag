@@ -1,6 +1,6 @@
 # SteamWishlistTool
 Greasemonkey script for organize your wishlist collection.
-There is no words, just screenshots
+There is no words anymore, just screenshots
 
 ![Screenshot of the "new Categories"](http://i.imgur.com/zKJWfno.png)
 ![Screenshot of the "spoilers"](http://i.imgur.com/DkGn2hW.png)
