@@ -1,13 +1,15 @@
 // ==UserScript==
-// @author Rexedead, Hate
+// @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 0.98
+// @version 0.99
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_listValues
 // @grant       GM_deleteValue
+// @grant    GM_addStyle
+// @run-at document-end
 // @include *steamcommunity.com/id/*/wishlist*
 // @include *steamcommunity.com/profiles/*/wishlist*
 // @downloadURL https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.user.js
