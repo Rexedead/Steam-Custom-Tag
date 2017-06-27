@@ -2,13 +2,14 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 0.99
+// @version 1.0
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_listValues
 // @grant       GM_deleteValue
-// @grant    GM_addStyle
+// @grant       GM_addStyle
+// @namespace https://github.com/Rexedead/SteamWishlistTool
 // @run-at document-end
 // @include *steamcommunity.com/id/*/wishlist*
 // @include *steamcommunity.com/profiles/*/wishlist*
@@ -20,6 +21,10 @@
     // Your code here...
     //ИТА ЩЕДЕВРЕЛЬНЭ! ©Hate
   // GM_deleteValue("");
+  
+  window.addEventListener("load", Greasemonkey_main, false);
+
+function Greasemonkey_main() {
 
     var DivBar = document.createElement('div');
     var addTextField = document.createElement('input');
@@ -29,7 +34,7 @@
     var categoryList = document.createElement('div');
     var donBut = document.createElement('button');
     var donSpan = document.createElement('span');
-    var userid = window.location.href.split('/wishlist')[0].split('/')[4];
+    var userid = window.location.href.split('/')[4];
 
     console.log("ID for this page is: " + userid);
 
@@ -456,5 +461,6 @@
 
 
     }
+}
 
 })();
