@@ -20,5 +20,7 @@ Me and my friend released a script for greasemonkey, which allow organize Your w
 
 Little tip: You can drag and drop games, when category contains as minimum one element
 
-![Screenshot of the "new Categories"](http://i.imgur.com/zKJWfno.png)
-![Screenshot of the "spoilers"](http://i.imgur.com/DkGn2hW.png)
+<p align="center">
+  <img src="http://i.imgur.com/DkGn2hW.png" width="350" />
+  <img src="http://i.imgur.com/wPqkzCW.png" height="328"/>
+</p>
