@@ -2,7 +2,7 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 1.0
+// @version 1.1
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -439,9 +439,8 @@ function Greasemonkey_main() {
 
     function donate() {
         GM_addStyle(" .donatip {  position: relative; display: inline-block;}  .donatip .donatiptext { visibility: hidden; width: 120px; background-color: #2B475E; color: #67C1F5; text-align: center; border-radius: 6px; padding: 5px 0; /* Position the donatip */ position: absolute;  z-index: 1; bottom: 100%; left: 50%; margin-left: -60px;} .donatip:hover .donatiptext {visibility: visible;}");
-
-
-
+        donBut.firstChild.textContent = "Cancel";
+        donBut.onclick = cancel;
         var help = document.createElement('span');
         help.className = 'help';
         help.innerHTML = '<a target="_blank" class="donatip" href="https://steamcommunity.com/tradeoffer/new/?partner=22861895&token=GtBPPaCq">' +
@@ -456,10 +455,12 @@ function Greasemonkey_main() {
 
         var donParent = document.getElementById("barName");
         donParent.appendChild(help);
-        donParent.removeChild(donBut);
-
-
-
+        
+        function cancel(){
+            donParent.removeChild(help);
+            donBut.firstChild.textContent = "DONATE";
+            donBut.onclick = donate;
+        }
     }
 }
 
