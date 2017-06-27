@@ -2,7 +2,7 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 1.1
+// @version 1.2
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -198,6 +198,7 @@ function Greasemonkey_main() {
         addInCategoryButton.lastChild.textContent = "Add games";
         addInCategoryButton.onclick = again;
         var games = addInCategoryButton.parentNode.parentNode.querySelectorAll('.wishlistRow');
+        var col = addInCategoryButton.parentNode.parentNode.firstChild.getElementsByClassName('num')[0].firstChild;
 
         for (var i = 0; i < game.length; i++) {
             if (game[i].checked) {
@@ -206,6 +207,7 @@ function Greasemonkey_main() {
                 });
                 game[i].parentNode.parentNode.classList.add("inCategory");
                 addInCategoryButton.parentNode.parentNode.appendChild(game[i].parentNode.parentNode);
+                col.nodeValue = Number(col.nodeValue) + 1;
             }
             game[i].parentNode.remove();
             //addInCategoryButton.parentNode.lastChild.onclick = function () { remGames(addInCategoryButton.parentNode.lastChild); };
@@ -244,9 +246,11 @@ function Greasemonkey_main() {
         function remFromList() {
             var game = Button.parentNode.parentNode.querySelectorAll('.inCategory');
             var sfrgame = Button.parentNode.parentNode.querySelectorAll('.selection');
+            var col = Button.parentNode.parentNode.firstChild.getElementsByClassName('num')[0].firstChild;
             for (var i = 0; i < sfrgame.length; i++) {
                 if (sfrgame[i].checked) {
                     game[i].parentNode.parentNode.parentNode.appendChild(game[i]);
+                    col.nodeValue = Number(col.nodeValue) - 1;
                     game[i].classList.remove("inCategory");
                 }
                 sfrgame[i].parentNode.remove();
@@ -281,19 +285,26 @@ function Greasemonkey_main() {
         var remCatSpan = document.createElement('span');
         var remGamesSpan = document.createElement('span');
         var addRemoveDiv = document.createElement('div');
+        var itemsNum = document.createElement('span');
         observer = new MutationObserver(function (mutations) {
+            
             mutations.forEach(function (mutation) {
                 if (mutation.attributeName === "class") {
                     category.addEventListener("mouseout", handl);
                 }
             });
         });
+        
+        itemsNum.classList.add("num");
+        itemsNum.appendChild(document.createTextNode("0"));
 
         function handl(event) {
+            var col = this.firstChild.getElementsByClassName('num')[0].firstChild;
             var drag = categoryList.querySelectorAll('.inDrag');
             if (drag.length > 0) {
                 //alert("asd");
                 drag[0].classList.remove("inCategory");
+                col.nodeValue = Number(col.nodeValue) - 1;
                 child.appendChild(drag[0]);
                 save();
             }
@@ -327,6 +338,9 @@ function Greasemonkey_main() {
         addRemoveDiv.style = "margin-bottom: 2%";
 
         categoryName.appendChild(document.createTextNode(cat_name)); //get user text input
+        categoryName.appendChild(document.createTextNode(" ("));
+        categoryName.appendChild(itemsNum);
+        categoryName.appendChild(document.createTextNode(")"));
         categoryName.style = "font-size: 16px; font-weight: 300; color: #ffffff; padding: 5px; cursor: default; cursor: default; cursor: -moz-default; outline: none;";
         categoryName.appendChild(remInCategoryButton);
         category.appendChild(categoryName);
@@ -338,12 +352,14 @@ function Greasemonkey_main() {
         category.style = "min-height: inherit; background-color: rgba( 84, 133, 183, 0.2); color: #56707f; padding: 8px 1%; margin-bottom: 15px; position: relative;";
         category.addEventListener("DOMNodeInserted", function (event) {
             var games = category.querySelectorAll('.wishlistRow');
+            var col = category.firstChild.getElementsByClassName('num')[0].firstChild;
             for (var i = 0; i < games.length; i++) {
                 if (!games[i].classList.contains('inCategory')) {
                     observer.observe(games[i], {
                         attributes: true
                     });
                     games[i].classList.add("inCategory");
+                    col.nodeValue = Number(col.nodeValue) + 1;
                     save();
                 }
             }
@@ -465,3 +481,4 @@ function Greasemonkey_main() {
 }
 
 })();
+
