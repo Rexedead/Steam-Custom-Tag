@@ -22,5 +22,5 @@ Little tip: You can drag and drop games, when category contains as minimum one e
 
 <p align="center">
   <img src="http://i.imgur.com/DkGn2hW.png" width="350" />
-  <img src="http://i.imgur.com/wPqkzCW.png" height="328"/>
+  <img src="http://i.imgur.com/vXslFbA.png" height="328"/>
 </p>
