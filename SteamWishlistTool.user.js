@@ -2,7 +2,7 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 1.3
+// @version 1.3.1
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -629,7 +629,7 @@
                 '<img  src="/public/shared/images/header/globalheader_logo.png" height="20">' +
                 ' <span class="donatiptext">Help us via items</span>' +
                 '</a>' +
-                '<a target="_blank" class="donatip" href="https://www.paypal.me/HateAll">' +
+                '<a target="_blank" class="donatip" href="https://www.paypal.me/rexedead">' +
                 '<img  src="https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom-white.svg" height="18">' +
                 '<span class="donatiptext">Help us via cent</span>' +
                 '</a>';
