@@ -2,7 +2,7 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 1.2
+// @version 1.2.1
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -286,6 +286,10 @@ function Greasemonkey_main() {
         var remGamesSpan = document.createElement('span');
         var addRemoveDiv = document.createElement('div');
         var itemsNum = document.createElement('span');
+        var sortOptionBar = document.createElement('div');
+        var sortByPriceButton = document.createElement('button');
+        var sortByNameButton = document.createElement('button');
+        var sortByRankButton = document.createElement('button');
         observer = new MutationObserver(function (mutations) {
             
             mutations.forEach(function (mutation) {
@@ -297,6 +301,27 @@ function Greasemonkey_main() {
         
         itemsNum.classList.add("num");
         itemsNum.appendChild(document.createTextNode("0"));
+        
+        sortOptionBar.appendChild(document.createTextNode("Sort by: "));
+        sortOptionBar.appendChild(sortByRankButton);
+        sortOptionBar.appendChild(sortByNameButton);
+        sortOptionBar.appendChild(sortByPriceButton);
+        sortOptionBar.style = "float: right; outline: none;";
+        
+        sortByRankButton.className = "btnv6_blue_hoverfade btn_small ";
+        sortByRankButton.appendChild(document.createTextNode("by rank"));
+        sortByRankButton.type = "button";
+        sortByRankButton.onclick = sortByRankIncreas;
+        
+        sortByPriceButton.className = "btnv6_blue_hoverfade btn_small ";
+        sortByPriceButton.appendChild(document.createTextNode("by price"));
+        sortByPriceButton.type = "button";
+        sortByPriceButton.onclick = sortByPriceIncreas;
+        
+        sortByNameButton.className = "btnv6_blue_hoverfade btn_small ";
+        sortByNameButton.appendChild(document.createTextNode("by name"));
+        sortByNameButton.type = "button";
+        sortByNameButton.onclick = sortByNameIncreas;
 
         function handl(event) {
             var col = this.firstChild.getElementsByClassName('num')[0].firstChild;
@@ -341,13 +366,12 @@ function Greasemonkey_main() {
         categoryName.appendChild(document.createTextNode(" ("));
         categoryName.appendChild(itemsNum);
         categoryName.appendChild(document.createTextNode(")"));
+        categoryName.appendChild(sortOptionBar);
         categoryName.style = "font-size: 16px; font-weight: 300; color: #ffffff; padding: 5px; cursor: default; cursor: default; cursor: -moz-default; outline: none;";
         categoryName.appendChild(remInCategoryButton);
         category.appendChild(categoryName);
         category.appendChild(addRemoveDiv);
         category.className = cat_name;
-
-
 
         category.style = "min-height: inherit; background-color: rgba( 84, 133, 183, 0.2); color: #56707f; padding: 8px 1%; margin-bottom: 15px; position: relative;";
         category.addEventListener("DOMNodeInserted", function (event) {
@@ -393,6 +417,120 @@ function Greasemonkey_main() {
 
         function delGame() {
             remGames(remGamesButton);
+        }
+        
+        function sortByRankIncreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(items[item].getElementsByClassName('wishlist_rank')[0].value > items[item + 1].getElementsByClassName('wishlist_rank')[0].value){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByRankButton.onclick = sortByRankDecreas;
+        }
+        
+        function sortByRankDecreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(items[item].getElementsByClassName('wishlist_rank')[0].value < items[item + 1].getElementsByClassName('wishlist_rank')[0].value){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByRankButton.onclick = sortByRankIncreas;
+        }
+        
+        function sortByNameIncreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(items[item].getElementsByTagName('h4')[0].firstChild.nodeValue.charAt(0) > items[item + 1].getElementsByTagName('h4')[0].firstChild.nodeValue.charAt(0)){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByNameButton.onclick = sortByNameDecreas;
+        }
+        
+        function sortByNameDecreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(items[item].getElementsByTagName('h4')[0].firstChild.nodeValue.charAt(0) < items[item + 1].getElementsByTagName('h4')[0].firstChild.nodeValue.charAt(0)){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByNameButton.onclick = sortByNameIncreas;
+        }
+        
+        function sortByPriceIncreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(Number(items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" "))) > Number(items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")))){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByPriceButton.onclick = sortByPriceDecreas;
+        }
+        
+        function sortByPriceDecreas(){
+            
+            var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
+            for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
+                for(var item = 0; item < AllItems; item++){
+                    if(Number(items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" "))) < Number(items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")))){
+                        var temp = items[item];
+                        items[item] = items[item + 1];
+                        items[item + 1] = temp;
+                    }
+                }
+            }
+            
+            for(var i = 0; i < items.length; i++){
+                category.appendChild(items[i]);
+            }
+            sortByPriceButton.onclick = sortByPriceIncreas;
         }
 
 
@@ -481,4 +619,3 @@ function Greasemonkey_main() {
 }
 
 })();
-
