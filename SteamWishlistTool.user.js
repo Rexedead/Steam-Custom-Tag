@@ -1,9 +1,8 @@
 // ==UserScript==
 // @author Hate, Rexedead
-// @name SteamWishListTool
-// @namespace steam-categories
-// @version 1.3.1
-// @description steam-categories
+// @name SteamWishListTool - Steam Wishlist Organizer
+// @version 1.3.2
+// @description Oranize Steam Wishlist Collection via categories and tags
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_listValues
@@ -16,6 +15,8 @@
 // @downloadURL https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.user.js
 // @updateURL   https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.meta.js
 // ==/UserScript==
+
+
 (function () {
     'use strict';
     // Your code here...

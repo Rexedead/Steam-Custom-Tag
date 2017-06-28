@@ -1,9 +1,8 @@
 // ==UserScript==
 // @author Hate, Rexedead
-// @name SteamWishListTool
-// @namespace steam-categories
-// @version 1.3.1
-// @description steam-categories
+// @name SteamWishListTool - Steam Wishlist Organizer
+// @version 1.3.2
+// @description Oranize Steam Wishlist Collection via categories and tags
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_listValues
