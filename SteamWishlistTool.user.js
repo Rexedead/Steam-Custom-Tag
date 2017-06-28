@@ -2,7 +2,7 @@
 // @author Hate, Rexedead
 // @name SteamWishListTool
 // @namespace steam-categories
-// @version 1.2.1
+// @version 1.2.2
 // @description steam-categories
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -500,11 +500,22 @@ function Greasemonkey_main() {
             var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
             for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
                 for(var item = 0; item < AllItems; item++){
-                    if(Number(items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" "))) > Number(items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")))){
+                    var first = select(items[item]);
+                    var second = select(items[item + 1]);
+                    //alert(items[item].getElementsByClassName('price').length);
+                    if(first > second){
                         var temp = items[item];
                         items[item] = items[item + 1];
                         items[item + 1] = temp;
                     }
+                }
+            }
+            
+            function select(check){
+                try{
+                    return Number(check.getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, check.getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")));
+                }catch(ErrEvent){
+                    return Number(check.getElementsByClassName('price')[0].firstChild.nodeValue.trim().substring(0, check.getElementsByClassName('price')[0].firstChild.nodeValue.trim().indexOf(" ")));
                 }
             }
             
@@ -519,11 +530,22 @@ function Greasemonkey_main() {
             var items = Array.prototype.slice.call(category.querySelectorAll('.wishlistRow'));
             for(var AllItems = items.length - 1; AllItems >= 0; AllItems--){
                 for(var item = 0; item < AllItems; item++){
-                    if(Number(items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" "))) < Number(items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, items[item + 1].getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")))){
+                    var first = select(items[item]);
+                    var second = select(items[item + 1]);
+                    //alert(items[item].getElementsByClassName('price').length);
+                    if(first < second){
                         var temp = items[item];
                         items[item] = items[item + 1];
                         items[item + 1] = temp;
                     }
+                }
+            }
+            
+            function select(check){
+                try{
+                    return Number(check.getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.substring(0, check.getElementsByClassName('discount_final_price')[0].firstChild.nodeValue.indexOf(" ")));
+                }catch(ErrEvent){
+                    return Number(check.getElementsByClassName('price')[0].firstChild.nodeValue.trim().substring(0, check.getElementsByClassName('price')[0].firstChild.nodeValue.trim().indexOf(" ")));
                 }
             }
             
