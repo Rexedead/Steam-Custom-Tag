@@ -19,8 +19,3 @@ Me and my friend released a script for greasemonkey, which allow organize Your w
 6 Enjoy!
 
 Little tip: You can drag and drop games, when category contains as minimum one element
-
-<p align="center">
-  <img src="http://i.imgur.com/DkGn2hW.png" width="350" />
-  <img src="http://i.imgur.com/vXslFbA.png" height="328"/>
-</p>
