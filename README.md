@@ -1,4 +1,4 @@
-# SteamWishlistTool
+# SteamWishlistTool DOESNT WORK WITH NEW STEAM WL
 
 Hello everyone!
 Me and my friend released a script for greasemonkey, which allow organize Your wishlist via categories/tags/genres (as you want) =)
