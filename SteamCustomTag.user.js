@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author Rexedead
 // @name SteamCustomTag
-// @version 1.0
+// @version 1.1
 // @description Organize Steam Wishlist Collection via tags
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -19,7 +19,7 @@
 // @updateURL   https://github.com/Rexedead/Steam-Custom-Tag/raw/master/SteamCustomTag.meta.js
 // ==/UserScript==
 
-waitForKeyElements(".es_wishlist_total", main);
+waitForKeyElements(".sort_order", main);
 GM_addStyle(".customTagInput { white-space: nowrap; margin: 0; padding: 7px 10px; height: 20px; width: 100px; box-sizing: border-box;    background-color: rgba(0,0,0,0.1); border: 1px solid #000; color: #fff; border-radius: 3px; box-shadow: 0 0 3px rgba(0,0,0,0.5) inset, 1px 1px 0 0 rgba(255,255,255,0.2); margin-left:10px; } .customLabel{padding: 1px 10px 2px 10px; margin-right: 3px} .removeTagBtn{padding: 3px 10px 2px 10px; margin-right: 3px} @media screen and (max-width: 910px){.wishlist_row .platform_icons { width: 70%; pointer-events: auto;  }}");
 
 let gamesArr = GM_listValues();
