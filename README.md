@@ -13,8 +13,6 @@
 
 > You can remove tag from game, if input tag name again
 
-> It also works on a friends pages
-
 ## How it looks
 
 ![Wishlist](https://i.imgur.com/hXcIJ8r.png)
