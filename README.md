@@ -2,6 +2,7 @@
 
 ## How it works:
 1.0 Install Tampermonkey for [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [Firefox](https://addons.mozilla.org/ru/firefox/addon/greasemonkey/)
+
 ==Doesnt tested in Firefox==
 
 1.1. Click [here](https://github.com/Rexedead/Steam-Custom-Tag/raw/master/SteamCustomTag.user.js).
