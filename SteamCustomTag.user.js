@@ -15,8 +15,8 @@
 // @include *.steampowered.com/wishlist/profiles/*
 // @require  https://code.jquery.com/jquery-1.8.3.min.js
 // @require  https://gist.github.com/raw/2625891/waitForKeyElements.js
-// @downloadURL https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.user.js
-// @updateURL   https://raw.githubusercontent.com/Rexedead/SteamWishlistTool/master/SteamWishlistTool.meta.js
+// @downloadURL https://github.com/Rexedead/Steam-Custom-Tag/raw/master/SteamCustomTag.user.js
+// @updateURL   https://github.com/Rexedead/Steam-Custom-Tag/raw/master/SteamCustomTag.meta.js
 // ==/UserScript==
 
 waitForKeyElements(".es_wishlist_total", main);
