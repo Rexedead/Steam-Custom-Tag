@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author Rexedead
 // @name SteamCustomTag
-// @version 1.1
+// @version 1.2
 // @description Organize Steam Wishlist Collection via tags
 // @grant       GM_getValue
 // @grant       GM_setValue
@@ -69,7 +69,7 @@ function main() {
                         let gid = gamesArr[index];
                         let gvl = JSON.parse(GM_getValue(gid));
                         for (let j = 0; j < gvl.length; j++) {
-                            $(mutatorObj.addedNodes[0]).find('.tags').append('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
+                            $(mutatorObj.addedNodes[0]).find('.tags').prepend('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
                                 gvl[j] + '</button>');
                         }
                         tagListenerButton();
@@ -88,7 +88,7 @@ function main() {
                 if (emptyOrSpace.test($(this).val().trim()) &&
                     ($(this).closest('div').find('button.removeTagBtn').length == 0)
                 ) {
-                    $(this).closest('.lower_container').find('.tags').append('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
+                    $(this).closest('.lower_container').find('.tags').prepend('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
                         $(this).val().trim() + '</button>');
                     injectTag($(this).val().trim(), $(this).closest('.lower_container').find('.tags'));
                     $(this).val('');
@@ -117,7 +117,7 @@ function main() {
 
         $('label.customLabel').click(function () {
             if (emptyOrSpace.test($(this.previousSibling).val().trim())) {
-                $(this).closest('.lower_container').find('.tags').append('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
+                $(this).closest('.lower_container').find('.tags').prepend('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
                     $(this.previousSibling).val().trim() + '</button>');
                 injectTag($(this.previousSibling).val().trim(), $(this).closest('.lower_container').find('.tags'));
                 $(this.previousSibling).val('');
@@ -188,7 +188,7 @@ function main() {
             let gvl = JSON.parse(GM_getValue(gamesArr[index]));
             console.log(gid, gvl);
             for (let j = 0; j < gvl.length; j++) {
-                $("[data-app-id=" + gid + "]").find('.tags').append('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
+                $("[data-app-id=" + gid + "]").find('.tags').prepend('<button class="btnv6_blue_hoverfade btn_small customTag customLabel">' +
                     gvl[j] + '</button>');
                 injectGMTag(gvl[j], gid);
             }
