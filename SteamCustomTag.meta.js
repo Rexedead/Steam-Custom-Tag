@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author Rexedead
 // @name SteamCustomTag
-// @version 1.1
+// @version 1.2
 // @description Organize Steam Wishlist Collection via tags
 // @grant       GM_getValue
 // @grant       GM_setValue
